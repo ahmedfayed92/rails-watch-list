@@ -1,14 +1,36 @@
-<div class="container">
-  <h1>Movies list</h1>
-  <div id="lists">
-   <ol> <% @lists.each do |list| %>
-      <li>
-      Name:
-      <strong><%= list.name %></strong>
-      </li>
-        <%= link_to "Show this list", list %>
+  <style>
+    #headers {
+      background-image: url("https://img.freepik.com/free-vector/background-realistic-abstract-technology-particle_23-2148431735.jpg?w=996&t=st=1685285878~exp=1685286478~hmac=b947a47a0530b671fc486435127b21bf234b4c3f66b0262ff999244720016736");
+      min-height: 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+    }
+    </style>
+  <div id = "headers"class="container-fluid d-flex justify-content-center align-items-center text-light" style = "height: 40vh;">
+    <h1>Movie Lists</h1>
+  </div>
+
+<div class="container-fluid bg-dark" style="height: 100vh; ">
+  <div class="container-fluid d-flex justify-content-center align-items-center flex-wrap">
+    <% @lists.each do |list| %>
+    <div class="card mx-2 my-3 d-flex justify-content-center" style="width: 15rem;  border-radius: 10px;">
+      <div class="card-header">
+        movie list
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><strong><%= list.name %></strong></h5>
+        <div class = "d-flex justify-content-between" >
+          <%= link_to "Show this list", list, data: {}, class: "btn btn-primary" %>
+          <%= button_to "", list, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, :class => "btn btn-danger fa-solid fa-trash-can text-light"%>
+        </div>
+      </div>
+    </div>
     <% end %>
-    </ol>
+  </div>
+
+  <div class = "mx-3">
+    <%= link_to "create a new List", new_list_path, data: {}, class: "btn btn-outline-success" %>
   </div>
 </div>
-  <%= link_to "create a Movies List", new_list_path %>

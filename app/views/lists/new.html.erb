@@ -1,21 +1,28 @@
-
-
-<div class="d-flex justify-content-center ">
-    <div class = "col-lg-8 border border-dark rounded m-2 justify-content-center">
-        <h2>Create your own Lovely Dovely Movie List</h2>
-      <div class = " d-flex justify-content-center m-2">
-          <%= simple_form_for(@list) do |f| %>
-          <%= f.error_notification %>
-            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-            <div class="form-inputs">
-              <%= f.input :name %>
-            </div>
-            <div class="form-actions">
-              <%= f.button :submit %>
-            </div>
+<div class = "container-fluid  d-flex justify-content-center align-items-center" style = "height: 100vh;" >
+  <div class = "col-lg-8 m-2 d-flex justify-content-center text-light bg-dark rounded-5 align-items-center" style = "height: 35vh;" >
+    <div class = "col-lg-8 m-2 justify-content-center text-light bg-dark">
+      <h2>Create your own Lovely Dovely Movie List</h2>
+        <%= simple_form_for(@list) do |f| %>
+        <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+          <div class="form-inputs">
+            <%= f.input :name %>
+          </div>
+          <div class="form-actions d-flex justify-content-between">
+            <%= f.button :submit,  data: {}, :class => "btn btn-success text-light" %>
+            <%= link_to "Back to Lists", lists_path, data: {}, :class => "btn btn-secondary text-light" %>
+          </div>
           <% end %>
-      </div>
-          <%= link_to "Back to Lists", lists_path %>
     </div>
+  </div>
 </div>
+  <style>
+  body {
+    background-image: url("https://images.pexels.com/photos/220182/pexels-photo-220182.jpeg");
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+  </style>

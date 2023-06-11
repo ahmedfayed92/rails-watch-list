@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div>
+      <%= link_to "Go to my Lists🚀", lists_path, data: {}, :class => "btn btn-outline-primary text-decoration-none" %>
+    </div>
+    <div class="col-18 py-2 d-flex justify-content-center flex-wrap ">
+        <% @movies.each do |movie| %>
+          <div class="card m-2 text-light bg-dark w-30" style="width: 22rem; border-radius: 10px;">
+            <img class="card-img-top " style="border-top-left-radius: 100px;  border-top-right-radius: 10px;" src="<%= movie.poster_url %>" alt="movie poster">
+            <div class="card-body">
+              <p class="card-text ">Title: <%= movie.title %></p>
+            </div>
+            <div class="card-body">
+              <p class="card-text">overview: <%= movie.overview %></p>
+              <p class="card-text">rating:  <%="⭐" * movie.rating %></p>
+            </div>
+          </div>
+        <% end %>
+    </div>
+</div>

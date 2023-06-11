@@ -8,9 +8,9 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new(bookmark_params)
     @bookmark.list = @list
     if @bookmark.save
-      redirect_to list_path(@list)
+      redirect_to list_path(@list), notice => 'the movie has bin succefully add to your list'
     else
-      render '/list/show', status: :unprocessable_entity
+      render '/lists/show', status: :unprocessable_entity
     end
   end
 

@@ -1,40 +1,59 @@
-<%= link_to "◀️back to my Lists ", lists_path, data: {}, :class => "btn btn-outline-primary text-decoration-none" %>
-<div class="container">
-  <div class = "col-lg-18 ">
-    <h2 class = "text-center">My List: <%= @list.name %></h2>
-    <div class="d-flex m-2">
-      <% @list.bookmarks.each do |bookmark| %>
-        <div class="card m-2 " style="width: 18rem;">
-          <img class="card-img-top rounded-lg" src="<%= bookmark.movie.poster_url %>" alt="movie poster">
-          <div class="card-body">
-            <p class="card-text ">Title: <%= bookmark.movie.title %></p>
-          </div>
-          <div class="card-body">
-            <p class="card-text">Comment: <%= bookmark.comment %></p>
-            <p class="card-text">rating:  <%="⭐" * bookmark.movie.rating %></p>
-          </div>
-            <div class="card-body">
-             <%= link_to "", bookmark_path(bookmark.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, :class => "btn btn-danger fa-solid fa-trash-can text-light"%>
-          </div>
-        </div>
-      <% end %>
-    </div>
-      <div class = "d-flex justify-content-between m-3">
-        <%= button_to "Delete this List", @list, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, :class => "btn btn-danger text-light"%>
-      </div>
+  <style>
+  body {
+    background-image: url("https://wallpaperset.com/w/full/c/3/c/227416.jpg");
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+  </style>
+  <div class = "d-flex justify-content-between" >
+    <%= link_to "◀️back to my Lists ", lists_path, data: {}, :class => "btn btn-outline-primary text-decoration-none" %>
+    <%= link_to "see all movies⏩", movies_path, data: {}, :class => "btn btn-outline-warning text-decoration-none" %>
   </div>
-</div>
-  <div class="d-flex justify-content-center ">
-    <div class = "col-lg-8 border m-2 justify-content-center">
-      <h3 class = "text-center">Add to your List: <%= @list.name %></h3>
-      <div class = "col-lg-12 d-flex justify-content-center m-2">
-        <%= simple_form_for([@list, @bookmark]) do |f| %>
-          <%= f.error_notification %>
-          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-          <%= f.association :movie %>
-          <%= f.input :comment %>
-          <%= f.submit "Add a Movie to yor List", data: {}, :class => "btn btn-success text-light" %>
+
+  <div class="container" >
+    <div class = "col-lg-18 ">
+      <div class="d-flex justify-content-center">
+        <div class = " bg-dark col-2 "  style = "border-radius: 20px;">
+          <h2 class = "text-center text-light">My List🚀: <%= @list.name %></h2>
+        </div>
+      </div>
+      <div class="d-flex m-2 col-18 flex-wrap">
+        <% @list.bookmarks.each do |bookmark| %>
+          <div class="card m-2 text-light bg-dark " style="width: 18rem; border-radius: 10px;">
+            <img class="card-img-top " style="border-top-left-radius: 100px; border-top-right-radius: 10px;" src="<%= bookmark.movie.poster_url %>" alt="movie poster">
+            <div class="card-body">
+              <p class="card-text ">Title: <%= bookmark.movie.title %></p>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Comment: <%= bookmark.comment %></p>
+              <p class="card-text">rating:  <%="⭐" * bookmark.movie.rating %></p>
+            </div>
+              <div class="card-body">
+              <%= link_to "", bookmark_path(bookmark.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, :class => "btn btn-danger fa-solid fa-trash-can text-light"%>
+            </div>
+          </div>
         <% end %>
       </div>
+        <div class = "d-flex justify-content-between m-3">
+          <%= button_to "Delete this List", @list, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, :class => "btn btn-danger text-light"%>
+        </div>
     </div>
   </div>
+    <div class="d-flex justify-content-center ">
+      <div class = "col-lg-8 m-2 justify-content-center text-light bg-dark" style = "border-radius: 10px;">
+        <h3 class = "text-center">Add to your List: <%= @list.name %></h3>
+        <div class = "col-lg-12 d-flex justify-content-center m-2">
+          <%= simple_form_for([@list, @bookmark]) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <%= f.association :movie %>
+            <%= f.input :comment %>
+            <%= f.submit "Add Movie", data: {}, :class => "btn btn-success text-light" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
